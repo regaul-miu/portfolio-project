@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Regaul Karim</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+<!-- =======================================================
+* Name       : Md Regaul Karim
+* Id No.     : 614595
+* University : Maharishi International University.
+======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Md Regaul Karim</a></h1>
+        <div class="social-links mt-3 text-center">
+          <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
+          <a href="https://www.facebook.com/regaulkarim27" target="_blank" class="facebook"><i
+              class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/karimregaul/" target="_blank" class="instagram"><i
+              class="bx bxl-instagram"></i></a>
+          <a href="https://join.skype.com/invite/xSg6zW0E9JGD" target="_blank" class="google-plus"><i
+              class="bx bxl-skype"></i></a>
+          <a href="https://www.linkedin.com/in/regaulkarim95/" target="_blank" class="linkedin"><i
+              class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <li><a href="#blog" class="nav-link scrollto"><i class="bx bxl-blogger"></i> <span>Blog</span></a></li>
+          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="section-title" style="padding-bottom: 0;">
+            <h2>Blog</h2>
+          </div>          
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Blog</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+        <h3>
+          Employing AWS AppConfig in lieu of Lambda Environment Variables
+        </h3><br/>
+        <div class="row">
+          <p>AWS Lambda is a widely-used serverless computing platform that lets developers run code without dealing with the nitty-gritty of infrastructure management. We can write Lambda functions in different programming languages, including ESM with top-level await. These functions can smoothly work with various AWS services, and one such service is AWS AppConfig. AppConfig is a handy configuration management service that assists in handling application configurations across diverse environments.</p><br/>
+          <p>Let's dive into how we can swap out environment variables in a Lambda function with AWS AppConfig, all with the help of a Lambda Extension. As an illustration, we'll set up a configuration profile to effortlessly turn on or off the debug library, all without the need to redeploy the Lambda function.          
+          </p>
+          <h5>Replacing Environment Variables with AWS AppConfig</h5>
+          <p>
+            Using environment variables is a usual way to store setup details in Lambda functions. Yet, handling them can be tricky, especially with various environments in play. AWS AppConfig makes managing configuration data easier by offering a centralized spot to store setup info for different environments.</p><br/>
+          <p>
+            Opting for AWS AppConfig over Environment Variables allow us to configure one or more Lambda functions independently for any deployment, without the hassle of manually changing environment variables.
+          </p>
+          <p>
+            <img src="assets/img/blog/creatingAppConfig-00.png" class="img-fluid" alt="AppConfig">
+          </p>
+          <p>
+            Start by making an AppConfig application to hold our setup details. Head to the AWS AppConfig console and hit the "Create application" button. Give your application a name and pick the right settings for your needs.
+          </p>
+          <h5>Establish an AppConfig Environment</h5>
+          <p>
+            <br/>
+            <img src="assets/img/blog/appConfig.jpg" class="img-fluid" alt="">
+          </p><br/>
+          <p>
+            After making the application, the next move is creating an AppConfig environment. An environment stands for a logical deployment target, like a development or production setting. To set up an AppConfig environment, visit the AWS AppConfig console, choose your application, head to the Environments tab, click on the “Create environment” button, name your environment, and pick the right settings for your situation.
+          </p><br/>
+          <h5>Establish an AppConfig Configuration Profile.</h5><br/>
+          <p>
+            Now, let's make an AppConfig configuration profile to store our setup details. A configuration profile is like a bunch of configuration info linked to an environment. To set up an AppConfig configuration profile, visit the AWS AppConfig console, pick your application, and on the “Configuration Profiles and Feature Flags” tab, click the “Create” button.
+          </p><br/>
+            Choose "Freeform Configuration" and set up the profile:<br/><br/>
+
+            1. Give your configuration profile a name.<br/>
+            2. Opt for "AWS AppConfig hosted configuration" to input<br/> configuration details directly.<br/>
+            3. Pick "JSON" to define the configuration information:<br/>
+          </p>
+          <p>
+            <br/>
+            <img src="assets/img/blog/appConfigProfileWithDebug.jpg" class="img-fluid" alt="">
+          </p><br/>
+          <p>Once this is done, click “Next” to create the configuration profile.</p><br/>
+          <h5>Establish an AppConfig Deployment.</h5><br/>
+          <p>
+            An AppConfig deployment tweaks the configuration that any Lambda using the extension gets when they ask for the configuration. To set up an AppConfig deployment, head to the AWS AppConfig console, choose your application, pick the Configuration Profile you made earlier, and then hit “Start Deployment.”
+          </p>
+          <p>
+            <br/>
+            <img src="assets/img/blog/startDeployment.jpg" class="img-fluid" alt="">
+          </p><br/><br/>
+          <p>
+            When you're on the deployment screen, pick AppConfig.AllAtOnce (Quick) for the “Deployment Strategy” if you want the configuration change to happen right away. If not, go for another option to slowly introduce the configuration.<br/><br/>
+
+            Once that's sorted, click “Start Deployment”.
+          </p><br/>
+          <h5>Add the AWS AppConfig Lambda Extension.</h5><br/>
+          <p>
+            The AWS AppConfig Lambda Extension is like a ready-to-use Lambda layer that lets your Lambda function connect with the AppConfig service. To install it, head to the Lambda console, select your function, go to the “Code” tab, and look for the “Layers” section near the bottom. Hit “Add a layer,” pick the AWS-AppConfig-Extension layer, and then click “Add”.
+          </p>
+          <p>
+            <br/>
+            <img src="assets/img/blog/appConfigExtensionLayer.jpg" class="img-fluid" alt="">
+          </p><br/><br/>
+          <h5>Revise the IAM Permissions for the Lambda Function.</h5><br/>
+          <p>
+            To get configuration data from AWS AppConfig in a Lambda function, you have to adjust the function's IAM permissions to let it connect with the AppConfig service. Here's how you can do it:
+          </p><br/><br/>
+          <h5>Establish an IAM policy for the Lambda function.</h5><br/>
+          <p>
+            Initially, make an IAM policy that gives the Lambda function the green light to reach the AppConfig service. You can craft your own policy or pick one from the selection of pre-made policies offered by AWS.
+          </p><br/>
+          <h5>Link the IAM policy to the Lambda function.</h5><br/>
+          <p>
+            Once you've got the IAM policy, the next step is to connect it to the Lambda function. To achieve this, navigate to the AWS Lambda console, pick your function, and hit the “Configuration” tab. In the “Permissions” section, click the “Role name” link to open the IAM console.
+          </p><br/>
+          <p>
+            In the IAM console, press the “Attach policies” button, then find the policy you made earlier. Pick the policy and hit “Attach policy”.
+          </p><br/>
+          <h5>Confirm the IAM permissions.</h5><br/>
+          <p>
+            Once you link the IAM policy to the Lambda function, it's crucial to make sure the function has the required permissions to reach the AppConfig service. To do this, run a test on the Lambda function and review the CloudWatch logs for any errors linked to IAM permissions.
+          </p><br/>
+          <h5>Integrate a Prefetch Environment Variable.</h5><br/>
+          <p>
+            The AWS AppConfig Lambda Extension comes with a helpful environment variable called AWS_APPCONFIG_EXTENSION_PREFETCH_LIST. This variable can enhance your Lambda function's performance, offering the following advantages:
+          </p><br/>
+          <p>
+            <strong>1. cold starts:</strong> By prefetching configuration data, the first time you run the Lambda function is faster. This is because the configuration data is already in the local cache, boosting the overall performance of your Lambda function. This is particularly beneficial for cases where low latency is crucial.
+          </p><br/>
+          <p>
+            <strong>2. Less API calls:</strong> Prefetching configuration data cuts down on the number of API calls to the AppConfig service, leading to cost savings for your application.
+          </p><br/>
+          <p>
+            To include this variable, visit the AWS Lambda console, choose your function, and click the “Configuration” tab. In the “Environment variables” section, tap the “Edit” button to add a new variable.
+          </p><br/><br/>
+          <p>
+            <br/>
+            <img src="assets/img/blog/environmentalVariable.jpg" class="img-fluid" alt="">
+          </p><br/>
+          <p><em>Replace--"application-name", "environment-name", and "configuration-profile-name" with the appropriate values for your use case.</em></p>
+          <br/>
+          <h5>Revise the Lambda Function Code.</h5><br/>
+          <p>
+            After installing the extension, we can tweak our Lambda function code to integrate the AppConfig service. Here's a quick example, using the Node.js 18 Lambda runtime. Leveraging the built-in ESM and fetch support makes fetching the AppConfig configuration a breeze.
+          </p><br/>
+          
+          <h5><br/>Conclusion</h5><br/>
+          <p>
+            Utilizing the AWS AppConfig Lambda Extension is a simple and effective method to fetch configuration data in our AWS Lambda function. With the extension in action, we can skip the hassle of redeploying one or more Lambda functions every time a variable changes. Plus, it keeps our performance intact by prefetching and caching parameters.
+          </p>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; 2024 <strong><span>Md Regaul Karim</span></strong>
+      </div>
+      <div class="credits">
+        All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
