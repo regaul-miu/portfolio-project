@@ -213,6 +213,8 @@
     }
   });
 
+
+
   
 
   /**
@@ -228,3 +230,124 @@
   });
 
 })()
+
+/**
+   * Contact Form
+   */
+function contactMe(){
+  var name = $("#name").val();
+  var email = $("#email").val();
+  var subject = $("#subject").val();
+  var text = $("#message").val();
+  var phone = $("#phone").val();
+
+  $(".loading").hide();
+  $(".error-message").hide();
+  var msgObj = {
+    name:"",
+    email:"",
+    title:"",
+    message:"",
+    phone:""
+  };
+  console.log(name);
+  if(name!= null || name != undefined){
+    name= name.trim();
+    msgObj.name = name;
+  }
+
+  if(email!= null || email != undefined){
+    email= email.trim();
+    msgObj.email = email;
+  }
+
+  if(subject!= null || subject != undefined){
+    subject= subject.trim();
+    msgObj.title = subject;
+  }
+
+  if(text!= null || text != undefined){
+    text= text.trim();
+    msgObj.message = text;
+  }
+
+  if(phone!= null || phone != undefined){
+    phone = phone.trim();
+    msgObj.phone = phone;
+  }
+
+  if(msgObj.name.length < 3){
+    $($(".error-message")[0]).text("Name is required. (Minimum length 3)");
+    $(".error-message").show();
+    return;
+  }
+
+  if(!validateEmail(msgObj.email)){
+    $($(".error-message")[0]).text("Please enter a valid email address.");
+    $(".error-message").show();
+    return;
+  }
+
+  if(msgObj.title < 3){
+    $($(".error-message")[0]).text("Subject is required. (Minimum length 3)");
+    $(".error-message").show();
+    return;
+  }
+
+  if(msgObj.message.length < 3){
+    $($(".error-message")[0]).text("Message is required. (Minimum length 3)");
+    $(".error-message").show();
+    return;
+  }
+
+  if(!validatePhoneNumber(msgObj.phone)){
+    $($(".error-message")[0]).text("Please enter a valid phone number.");
+    $(".error-message").show();
+    return;
+  }
+
+var url = "https://97urr7jma1.execute-api.us-east-2.amazonaws.com/v1/contact";
+  $.ajax({
+    url:url,
+    type:"POST",
+    data:JSON.stringify(msgObj),
+    contentType:"application/json; charset=utf-8",
+    success: function(data){
+      //console.log("success");
+      $(".sent-message").show();
+      $("#name").val("");
+      $("#email").val("");
+      $("#subject").val("");
+      $("#message").val("");
+      $("#phone").val("");
+      setTimeout(function(){$(".sent-message").hide();}, 5000);
+    },
+    error: function(error){
+      console.log(error);
+      $($(".error-message")[0]).text("Opp's something wrong, please try again.");
+    $(".error-message").show();
+    setTimeout(function(){$(".error-message").hide();
+    $("#name").val("");
+    $("#email").val("");
+    $("#subject").val("");
+    $("#message").val("");
+    $("#phone").val("");
+  
+  }, 5000);
+    }
+  })
+}
+
+function validateEmail(email) {
+  // Basic email validation regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  return emailRegex.test(email);
+}
+
+function validatePhoneNumber(phoneNumber) {
+  // Basic phone number validation regex (allows digits and optional dashes)
+  const phoneRegex = /^\d{3}-?\d{3}-?\d{4}$/;
+
+  return phoneRegex.test(phoneNumber);
+}
